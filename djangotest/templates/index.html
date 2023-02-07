@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Расчет налога при продаже квартиры</title>
+    </head>
+    <body>
+        <h3>Заполнив эту форму можно узнать налог, который придётся заплатить при продаже квартиры</h3>
+        <form action="/get_tax" method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <input type="submit" value="Посчитать">
+        </form>
+    </body>
+    <script>
+        const buy_method = document.getElementById('id_buy_method');
+        buy_method.onchange = function() {
+            const need_label = document.querySelector('label[for="id_date_month"]');
+            const buy_cost = document.getElementById('id_buy_cost');
+            const is_single = document.getElementById('id_is_single');
+            if (buy_method.value == 'buy_ddu'){
+                need_label.textContent = 'Дата полной оплаты по ДДУ';
+            } else if (buy_method.value == 'inheritance'){
+                need_label.textContent = 'Дата сметри наследодателя';
+            } else {
+                need_label.textContent = 'Дата регистрации собственности';
+            }
+
+            if (['inheritance','rent','privatisation','gift'].includes(buy_method.value)){
+                buy_cost.parentElement.style.display = 'none';
+                is_single.parentElement.style.display = 'none';
+            } else{
+                buy_cost.parentElement.style.display = 'block';
+                is_single.parentElement.style.display = 'block';
+            }
+        }
+    </script>
+    
+</html>

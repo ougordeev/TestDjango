@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Расчет налога</title>
+    </head>
+    <body>
+        <h1>Получается следующий налог</h1>
+        <h3>Налогооблагаемая база : {{ answer.base }}</h3>
+        <h3>Сумма налога : {{ answer.tax }}</h3>
+        <h3>Продать без налога можно после : {{ answer.no_tax_date }}</h3>
+        <h3>Стоимость до которой можно занизить сумму в договоре купли-продажи : {{ answer.min_sell_cost }}</h3>
+        <h3>Налог при занижении : {{ answer.min_tax }}</h3>
+        <h3>Комментарий : {{ answer.comment }}</h3>
+        <a href=".">Посчитать ещё раз</a>
+    </body>
+</html>
